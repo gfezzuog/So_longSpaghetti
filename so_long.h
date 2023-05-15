@@ -19,15 +19,17 @@
 
 typedef enum s_keys
 {
-	ESC = 53,
-	KEY_UP = 13,
-	KEY_DOWN = 1,
-	KEY_LEFT = 0,
-	KEY_RIGHT = 2,
-	ARROW_UP = 126,
-	ARROW_DOWN = 125,
-	ARROW_LEFT = 123,
-	ARROW_RIGHT = 124,
+	ESC = 65307,
+	KEY_UP = 119,
+	KEY_DOWN = 115,
+	KEY_LEFT = 97,
+	KEY_RIGHT = 100,
+	SPACE = 32,
+	HOSPITAL = 104,
+	ARROW_UP = 65362,
+	ARROW_DOWN = 65364,
+	ARROW_LEFT = 65361,
+	ARROW_RIGHT = 65363,
 }	t_keys;
 
 typedef struct s_map
