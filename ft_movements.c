@@ -6,7 +6,7 @@
 /*   By: gfezzuog <gfezzuog@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:24:33 by gfezzuog          #+#    #+#             */
-/*   Updated: 2022/11/22 18:06:16 by gfezzuog         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:12:11 by gfezzuog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,28 @@ void check_object2(t_map *map, t_game *game)
 		game->po2 = extinct_fire(map, map->p2x, map->p2y);
 		return	;
 	}
-	if (map->p2x - 1 == 'B')
+	if (map->map[map->p2y][map->p2x - 1] == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y][map->p2x - 1] = '0';
 		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
 					(map->p2x - 1) * 64, map->p2y * 64);
 	}
-	if (map->p2x + 1 == 'B')
+	if (map->map[map->p2y][map->p2x + 1] == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y][map->p2x + 1] = '0';
 		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
 					(map->p2x + 1) * 64, map->p2y * 64);
 	}
-	if (map->p2y + 1 == 'B')
+	if (map->map[map->p2y + 1][map->p2x] == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y + 1][map->p2x] = '0';
 		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
 					map->p2x * 64, (map->p2y + 1) * 64);
 	}
-	if (map->p2y - 1 == 'B')
+	if (map->map[map->p2y - 1][map->p2x] == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y - 1][map->p2x] = '0';
