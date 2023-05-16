@@ -63,21 +63,29 @@ void check_object2(t_map *map, t_game *game)
 	{
 		game->po2 = 1;
 		map->map[map->p2y][map->p2x - 1] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					(map->p2x - 1) * 64, map->p2y * 64);
 	}
 	if (map->p2x + 1 == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y][map->p2x + 1] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					(map->p2x + 1) * 64, map->p2y * 64);
 	}
 	if (map->p2y + 1 == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y + 1][map->p2x] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					map->p2x * 64, (map->p2y + 1) * 64);
 	}
 	if (map->p2y - 1 == 'B')
 	{
 		game->po2 = 1;
 		map->map[map->p2y - 1][map->p2x] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					map->p2x * 64, (map->p2y - 1) * 64);
 	}
 }
 
@@ -92,21 +100,29 @@ void check_object(t_map *map, t_game *game)
 	{
 		game->po = 1;
 		map->map[map->py][map->px - 1] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					(map->px - 1) * 64, map->py * 64);
 	}
 	if (map->map[map->py][map->px + 1] == 'B')
 	{
 		game->po = 1;
 		map->map[map->py][map->px + 1] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					(map->px + 1) * 64, map->py * 64);
 	}
 	if (map->map[map->py + 1][map->px] == 'B')
 	{
 		game->po = 1;
 		map->map[map->py + 1][map->px] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+					map->px * 64, (map->py + 1) * 64);
 	}
 	if (map->map[map->py - 1][map->px] == 'B')
 	{
 		game->po = 1;
 		map->map[map->py - 1][map->px] = '0';
+		mlx_put_image_to_window(game->mlx, game->win, game->obj.floor.pointer,
+			map->px * 64, (map->py - 1) * 64);
 	}
 }
 
@@ -140,7 +156,7 @@ int	ft_keypress(int keycode, t_game *game)
 		check_object2(&game->map, game);
 		check_object(&game->map, game);
 	}
-	ft_printmap(game->mlx, game->win, game->obj, game->map);
+	ft_updatemap(game->mlx, game->win, game->obj, game->map);
 	check_opening(&game->map, game);
 	return (0);
 }

@@ -108,7 +108,38 @@ void	ft_printmap(void *mlx, void *win, t_obj obj, t_map map)
 			if (map.map[map.cols][map.rows] == 'O')
 				mlx_put_image_to_window(mlx, win, obj.notfire.pointer,
 					map.rows * 64, map.cols * 64);
-			if (map.map[map.cols][map.rows] == 'Q')
+			if (map.map[map.cols][map.rows] == 'Q' )
+				mlx_put_image_to_window(mlx, win, obj.playernotfire.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'q')
+				mlx_put_image_to_window(mlx, win, obj.player2notfire.pointer,
+					map.rows * 64, map.cols * 64);
+			map.rows++;
+		}
+		map.rows = 0;
+		map.cols++;
+	}
+	ft_create_enemy(mlx, win, obj, map);
+}
+
+void	ft_updatemap(void *mlx, void *win, t_obj obj, t_map map)
+{
+	map.rows = 0;
+	map.cols = 0;
+	while (map.cols < map.height)
+	{
+		while (map.rows < map.length)
+		{
+			if (map.map[map.cols][map.rows] == 'p')
+				mlx_put_image_to_window(mlx, win, obj.player2.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'P')
+				mlx_put_image_to_window(mlx, win, obj.player.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'O')
+				mlx_put_image_to_window(mlx, win, obj.notfire.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'Q' )
 				mlx_put_image_to_window(mlx, win, obj.playernotfire.pointer,
 					map.rows * 64, map.cols * 64);
 			if (map.map[map.cols][map.rows] == 'q')

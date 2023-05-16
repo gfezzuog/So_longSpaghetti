@@ -121,6 +121,7 @@ void	ft_createfloortoenemy(void *mlx, void *win, t_obj obj, t_map map);
 void	ft_freematrix(t_map map);
 void	ft_writemoves(t_game *game);
 int		ft_close(t_game *game);
+void	ft_updatemap(void *mlx, void *win, t_obj obj, t_map map);
 
 //p2
 
