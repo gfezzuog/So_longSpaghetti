@@ -44,6 +44,8 @@ typedef struct s_map
 	int		p;
 	int		px;
 	int		py;
+	int		p2x;
+	int		p2y;
 	int		ex;
 	int		ey;
 	int		opening;
@@ -72,10 +74,15 @@ typedef struct s_obj
 	t_image	collect;
 	t_image	exit1;
 	t_image	exit2;
+	t_image player2;
 	t_image	player;
 	t_image	fire1;
 	t_image	fire2;
 	t_image	fire3;
+	t_image notfire;
+	t_image player2notfire;
+	t_image playernotfire;
+	t_image bucket;
 	int		fire;
 }	t_obj;
 
@@ -83,6 +90,8 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	int		po;
+	int		po2;
 	t_map	map;
 	t_obj	obj;
 	int		moves;
@@ -112,5 +121,12 @@ void	ft_createfloortoenemy(void *mlx, void *win, t_obj obj, t_map map);
 void	ft_freematrix(t_map map);
 void	ft_writemoves(t_game *game);
 int		ft_close(t_game *game);
+
+//p2
+
+void	ft_moveright2(t_map *map, t_game *game);
+void	ft_movedown2(t_map *map, t_game *game);
+void	ft_moveup2(t_map *map, t_game *game);
+void	ft_moveleft2(t_map *map, t_game *game);
 
 #endif

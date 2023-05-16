@@ -22,7 +22,7 @@ SRC = so_long.c \
 	  ft_movements.c \
 	  ft_movements2.c \
 	  ft_createblack.c \
-
+	  ft_movements2p2.c \
 
 HDRS = libft.h
 

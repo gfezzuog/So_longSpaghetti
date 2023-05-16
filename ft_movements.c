@@ -26,18 +26,87 @@ void	ft_freematrix(t_map map)
 	exit(0);
 }
 
-void	ft_printopen(t_map *map, t_game game)
+int extinct_fire(t_map *map, int px, int py)
 {
-	map->cols = 0;
-	map->rows = 0;
-	while (map->cols < map->height)
+	int i = 1;
+	if (map->map[py][px - 1] == 'N')
 	{
-		while (map->rows < map->length)
-		{
-			if (map->map[map->cols][map->rows] == 'E')
-				mlx_put_image_to_window(game.mlx, game.win,
-					game.obj.exit2.pointer, map->rows * 64, map->cols * 64);
-		}
+		map->map[py][px - 1] = 'O';
+		i = 0;
+	}
+	if (map->map[py][px + 1] == 'N')
+	{
+		map->map[py][px + 1] = 'O';
+		i = 0;
+	}
+	if (map->map[py - 1][px] == 'N')
+	{
+		map->map[py - 1][px] = 'O';
+		i = 0;
+	}
+	if (map->map[py + 1][px] == 'N')
+	{
+		map->map[py + 1][px] = 'O';
+		i = 0;
+	}
+	return(i);
+}
+
+void check_object2(t_map *map, t_game *game)
+{
+	if (game->po2 == 1)
+	{
+		game->po2 = extinct_fire(map, map->p2x, map->p2y);
+		return	;
+	}
+	if (map->p2x - 1 == 'B')
+	{
+		game->po2 = 1;
+		map->map[map->p2y][map->p2x - 1] = '0';
+	}
+	if (map->p2x + 1 == 'B')
+	{
+		game->po2 = 1;
+		map->map[map->p2y][map->p2x + 1] = '0';
+	}
+	if (map->p2y + 1 == 'B')
+	{
+		game->po2 = 1;
+		map->map[map->p2y + 1][map->p2x] = '0';
+	}
+	if (map->p2y - 1 == 'B')
+	{
+		game->po2 = 1;
+		map->map[map->p2y - 1][map->p2x] = '0';
+	}
+}
+
+void check_object(t_map *map, t_game *game)
+{
+	if (game->po == 1)
+	{
+		game->po = extinct_fire(map, map->px, map->py);
+		return	;
+	}
+	if (map->map[map->py][map->px - 1] == 'B')
+	{
+		game->po = 1;
+		map->map[map->py][map->px - 1] = '0';
+	}
+	if (map->map[map->py][map->px + 1] == 'B')
+	{
+		game->po = 1;
+		map->map[map->py][map->px + 1] = '0';
+	}
+	if (map->map[map->py + 1][map->px] == 'B')
+	{
+		game->po = 1;
+		map->map[map->py + 1][map->px] = '0';
+	}
+	if (map->map[map->py - 1][map->px] == 'B')
+	{
+		game->po = 1;
+		map->map[map->py - 1][map->px] = '0';
 	}
 }
 
@@ -49,14 +118,30 @@ int	ft_keypress(int keycode, t_game *game)
 		ft_freematrix(game->map);
 		exit(0);
 	}
-	if (keycode == KEY_UP || keycode == ARROW_UP)
+	if (keycode == KEY_UP)
 		ft_moveup(&game->map, game);
-	if (keycode == KEY_DOWN || keycode == ARROW_DOWN)
+	if (keycode == ARROW_UP)
+		ft_moveup2(&game->map, game);
+	if (keycode == KEY_DOWN)
 		ft_movedown(&game->map, game);
-	if (keycode == KEY_LEFT || keycode == ARROW_LEFT)
+	if (keycode == ARROW_DOWN)
+		ft_movedown2(&game->map, game);
+	if (keycode == KEY_LEFT)
 		ft_moveleft(&game->map, game);
-	if (keycode == KEY_RIGHT || keycode == ARROW_RIGHT)
+	if (keycode == ARROW_LEFT)
+		ft_moveleft2(&game->map, game);
+	if (keycode == KEY_RIGHT)
 		ft_moveright(&game->map, game);
+	if (keycode == ARROW_RIGHT)
+		ft_moveright2(&game->map, game);
+	if (keycode == SPACE)
+	{
+		printf("SPAZIO?\n");
+		check_object2(&game->map, game);
+		check_object(&game->map, game);
+	}
+	ft_printmap(game->mlx, game->win, game->obj, game->map);
+	check_opening(&game->map, game);
 	return (0);
 }
 
@@ -72,6 +157,11 @@ t_map	ft_findplayer(t_map map)
 			{
 				map.px = map.rows;
 				map.py = map.cols;
+			}
+			if (map.map[map.cols][map.rows] == 'p')
+			{
+				map.p2x = map.rows;
+				map.p2y = map.cols;
 			}
 			map.rows++;
 		}

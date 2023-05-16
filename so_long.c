@@ -29,6 +29,7 @@ t_obj	ft_chargetexture(void *mlx)
 	t_obj	obj;
 
 	obj.floor = create_obj(mlx, "./obj/floor.xpm");
+	obj.player2 = create_obj(mlx, "./obj/player2.xpm");
 	obj.wall = create_obj(mlx, "./obj/wall.xpm");
 	obj.collect = create_obj(mlx, "./obj/collectible.xpm");
 	obj.exit1 = create_obj(mlx, "./obj/closedtrapdoor.xpm");
@@ -37,6 +38,11 @@ t_obj	ft_chargetexture(void *mlx)
 	obj.fire1 = create_obj(mlx, "./obj/firstfire.xpm");
 	obj.fire2 = create_obj(mlx, "./obj/secondfire.xpm");
 	obj.fire3 = create_obj(mlx, "./obj/thirdfire.xpm");
+	obj.bucket = create_obj(mlx, "./obj/bucket.xpm");
+	obj.notfire = create_obj(mlx, "./obj/notfire.xpm");
+	obj.player2notfire = create_obj(mlx, "./obj/Player2notfire.xpm");
+	obj.playernotfire = create_obj (mlx, "./obj/Playernotfire.xpm");
+
 	obj.fire = 0;
 	return (obj);
 }
@@ -55,6 +61,8 @@ int	main(int argc, char **argv)
 	game.win = mlx_new_window(game.mlx, game.map.length * 64,
 			game.map.height * 64, "so_long");
 	game.obj = ft_chargetexture(game.mlx);
+	game.po = 0;
+	game.po2 = 0;
 	game.moves = 0;
 	ft_printmap(game.mlx, game.win, game.obj, game.map);
 	mlx_string_put(game.mlx, game.win, 10, 10, 0x00FFFFFF, "Moves: ");

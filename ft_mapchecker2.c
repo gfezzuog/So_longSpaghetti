@@ -49,7 +49,12 @@ int	ft_rightobj(t_map map)
 				&& map.map[map.cols][map.rows] != 'C'
 				&& map.map[map.cols][map.rows] != 'E'
 				&& map.map[map.cols][map.rows] != 'P'
-				&& map.map[map.cols][map.rows] != 'N')
+				&& map.map[map.cols][map.rows] != 'N'
+				&& map.map[map.cols][map.rows] != 'p'
+				&& map.map[map.cols][map.rows] != 'B'
+				&& map.map[map.cols][map.rows] != 'O'
+				&& map.map[map.cols][map.rows] != 'q'
+				&& map.map[map.cols][map.rows] != 'Q')
 				return (0);
 			map.rows++;
 		}

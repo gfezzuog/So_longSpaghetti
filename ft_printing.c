@@ -87,6 +87,9 @@ void	ft_printmap(void *mlx, void *win, t_obj obj, t_map map)
 	{
 		while (map.rows < map.length)
 		{
+			if (map.map[map.cols][map.rows] == 'p')
+				mlx_put_image_to_window(mlx, win, obj.player2.pointer,
+					map.rows * 64, map.cols * 64);
 			if (map.map[map.cols][map.rows] == 'P')
 				mlx_put_image_to_window(mlx, win, obj.player.pointer,
 					map.rows * 64, map.cols * 64);
@@ -98,6 +101,18 @@ void	ft_printmap(void *mlx, void *win, t_obj obj, t_map map)
 					map.rows * 64, map.cols * 64);
 			if (map.map[map.cols][map.rows] == 'E')
 				mlx_put_image_to_window(mlx, win, obj.exit1.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'B')
+				mlx_put_image_to_window(mlx, win, obj.bucket.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'O')
+				mlx_put_image_to_window(mlx, win, obj.notfire.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'Q')
+				mlx_put_image_to_window(mlx, win, obj.playernotfire.pointer,
+					map.rows * 64, map.cols * 64);
+			if (map.map[map.cols][map.rows] == 'q')
+				mlx_put_image_to_window(mlx, win, obj.player2notfire.pointer,
 					map.rows * 64, map.cols * 64);
 			map.rows++;
 		}
