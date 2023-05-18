@@ -152,7 +152,6 @@ int	ft_keypress(int keycode, t_game *game)
 		ft_moveright2(&game->map, game);
 	if (keycode == SPACE)
 	{
-		printf("SPAZIO?\n");
 		check_object2(&game->map, game);
 		check_object(&game->map, game);
 	}
